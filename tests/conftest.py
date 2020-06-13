@@ -37,7 +37,6 @@ def pytest_configure():
         LANGUAGE_CODE="en",
         SITE_ID=1,
         MIDDLEWARE=(),
-        USE_TZ=os.environ.get("USE_TZ", False),
     )
 
     from model_bakery import baker

@@ -8,7 +8,7 @@ from unittest.mock import patch
 from datetime import timedelta
 from model_bakery import baker
 from model_bakery.recipe import Recipe, foreign_key, RecipeForeignKey
-from model_bakery.timezone import now, tz_aware
+from django.utils.timezone import now
 from model_bakery.exceptions import InvalidQuantityException, RecipeIteratorEmpty
 from tests.generic.models import (
     TEST_TIME,
@@ -491,11 +491,11 @@ class TestSequences:
     def test_increment_by_timedelta(self):
         dummy = baker.make_recipe("tests.generic.serial_datetime")
         assert dummy.default_date_field == (TEST_TIME.date() + timedelta(days=1))
-        assert dummy.default_date_time_field == tz_aware(TEST_TIME + timedelta(hours=3))
+        assert dummy.default_date_time_field == TEST_TIME + timedelta(hours=3)
         assert dummy.default_time_field == (TEST_TIME + timedelta(seconds=15)).time()
         dummy = baker.make_recipe("tests.generic.serial_datetime")
         assert dummy.default_date_field == (TEST_TIME.date() + timedelta(days=2))
-        assert dummy.default_date_time_field == tz_aware(TEST_TIME + timedelta(hours=6))
+        assert dummy.default_date_time_field == TEST_TIME + timedelta(hours=6)
         assert dummy.default_time_field == (TEST_TIME + timedelta(seconds=30)).time()
 
     def test_creates_unique_timedelta_recipe_using_quantity_argument(self):

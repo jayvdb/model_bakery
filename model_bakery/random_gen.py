@@ -15,7 +15,7 @@ from decimal import Decimal
 from os.path import abspath, join, dirname
 from random import randint, choice, random, uniform
 
-from model_bakery.timezone import now
+from django.utils.timezone import now
 
 
 MAX_LENGTH = 300

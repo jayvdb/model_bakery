@@ -2,7 +2,7 @@
 from decimal import Decimal
 from model_bakery.recipe import Recipe, foreign_key, seq
 from model_bakery.recipe import related
-from model_bakery.timezone import now
+from django.utils.timezone import now
 from tests.generic.models import (
     TEST_TIME,
     Person,
